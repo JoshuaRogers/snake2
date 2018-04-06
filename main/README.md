@@ -1,0 +1,1 @@
+Whereas a rule is generally a condition that describes the valid flow of the game, the traits describe the various playstyles within those rules.
