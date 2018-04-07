@@ -8,6 +8,7 @@ class Coordinate
         int x;
         int y;
         int z;
+        bool operator==(const Coordinate&) const;
 };
 
 #endif

@@ -22,7 +22,7 @@ void setup() {
   log("Initializing Cube");
 
   cube.begin();
-  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(1)));
+  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(6)));
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
 }
 
@@ -34,5 +34,5 @@ void loop() {
   renderer->render(game);
 
   log("Starting game loop");
-  delay(250);
+  delay(25);
 }
