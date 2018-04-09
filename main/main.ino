@@ -8,8 +8,12 @@
 
 #include "gamerulespawnsnake.hpp"
 #include "gamerulemovesnake.hpp"
+#include "gameruleprunedeadsnake.hpp"
 
 #include "rainbowgamerenderer.hpp"
+
+#include "coordinate.hpp"
+#include "list.hpp"
 
 auto cube = Cube();
 auto game = std::make_shared<Game>(Game());
@@ -19,20 +23,14 @@ void setup() {
   Serial.begin(9600);
   while(!Serial);
 
-  log("Initializing Cube");
-
   cube.begin();
-  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(6)));
+  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(5)));
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
+  game->addRule(std::make_shared<GameRulePruneDeadSnake>(GameRulePruneDeadSnake()));
 }
 
 void loop() {
-  log("Starting update");
   game->update();
-
-  log("Starting render");
   renderer->render(game);
-
-  log("Starting game loop");
   delay(25);
 }

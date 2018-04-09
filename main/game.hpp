@@ -16,6 +16,7 @@ class Game
 
         int getSnakeCount();
         void addSnake(std::shared_ptr<Snake>);
+        void removeSnake(std::shared_ptr<Snake>);
         Iterator<Snake> getSnakeIterator();
 
         int getDotCount();

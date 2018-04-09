@@ -23,18 +23,19 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
 {
     _cube->background(black);
 
-    int color = 0;
+    int colorIndex = 0;
     auto snakeIterator = game->getSnakeIterator();
     while (snakeIterator.moveNext()) {
         auto snake = snakeIterator.getValue();
         auto coordinateIterator = snake->getCoordinateIterator();
 
+        auto color = snake->isAlive() ? rainbow[colorIndex] : white;
         while (coordinateIterator.moveNext()) {
             auto coordinate = coordinateIterator.getValue();
-            _cube->setVoxel(coordinate->x, coordinate->y, coordinate->z, rainbow[color]);
+            _cube->setVoxel(coordinate->x, coordinate->y, coordinate->z, color);
         }
 
-        color++;
+        colorIndex++;
     }
 
     _cube->show();

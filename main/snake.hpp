@@ -18,10 +18,17 @@ class Snake
 
         void move();
         void addMoveRule(std::shared_ptr<SnakeMoveRule>);
+        bool isAlive();
 
     private:
+        SnakeDirection chooseDirection();
+        bool tryMove();
+        void dissolve();
+        bool die();
+
         List<Coordinate> _coordinates;
         List<SnakeMoveRule> _moveRules;
+        bool _isAlive;
 };
 
 #endif

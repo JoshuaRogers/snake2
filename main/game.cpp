@@ -20,6 +20,22 @@ void Game::addSnake(std::shared_ptr<Snake> snake)
     _snakes.add(snake);
 }
 
+void Game::removeSnake(std::shared_ptr<Snake> snake)
+{
+    int index = -1;
+    auto snakes = _snakes.getIterator();
+    while(snakes.moveNext()) {
+        index++;
+        if (snake == snakes.getValue()) {
+            break;
+        }
+    }
+
+    if (index != -1) {
+        _snakes.remove(index);
+    }
+}
+
 Iterator<Snake> Game::getSnakeIterator()
 {
     return _snakes.getIterator();
