@@ -5,10 +5,10 @@ class Coordinate
 {
     public:
         Coordinate();
-        Coordinate(int x, int y, int z);
-        int x;
-        int y;
-        int z;
+        Coordinate(unsigned char x, unsigned char y, unsigned char z);
+        unsigned char x;
+        unsigned char y;
+        unsigned char z;
         bool operator==(const Coordinate&) const;
 };
 

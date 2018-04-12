@@ -5,7 +5,7 @@ Coordinate::Coordinate()
 
 }
 
-Coordinate::Coordinate(int x, int y, int z)
+Coordinate::Coordinate(unsigned char x, unsigned char y, unsigned char z)
 {
     this->x = x;
     this->y = y;
