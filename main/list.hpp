@@ -10,15 +10,15 @@ class List
 {
     public:
         List() : _length(0) {
-            _head = std::make_shared<ListNode<T>>(ListNode<T>(NULL));
+            _head = std::make_shared<ListNode<T>>(ListNode<T>());
         }
 
-        void add(std::shared_ptr<T> item)
+        void add(T item)
         {
             add(item, _length);
         }
 
-        void add(std::shared_ptr<T> item, int index)
+        void add(T item, int index)
         {
             auto parent = getBefore(index);
             auto node = std::make_shared<ListNode<T>>(ListNode<T>(item));
@@ -35,7 +35,7 @@ class List
             _length--;
         }
 
-        std::shared_ptr<T> get(int index)
+        T get(int index)
         {
             return getBefore(index + 1)->getValue();
         }
@@ -50,7 +50,7 @@ class List
             return _length;
         }
 
-    private:
+     private:
         std::shared_ptr<ListNode<T>> _head;
         int _length;
 

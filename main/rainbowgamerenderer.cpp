@@ -32,7 +32,7 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
         auto color = snake->isAlive() ? rainbow[colorIndex] : white;
         while (coordinateIterator.moveNext()) {
             auto coordinate = coordinateIterator.getValue();
-            _cube->setVoxel(coordinate->x, coordinate->y, coordinate->z, color);
+            _cube->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
         }
 
         colorIndex++;

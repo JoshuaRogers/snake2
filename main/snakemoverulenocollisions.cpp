@@ -19,7 +19,7 @@ SnakeMoveRuleNoCollisions::SnakeMoveRuleNoCollisions(Game* game) : _game(game) {
 bool hasCollision(std::shared_ptr<Snake> snake, Coordinate candidateCoordinate) {
     auto snakeCoordinates = snake->getCoordinateIterator();
     while (snakeCoordinates.moveNext()) {
-        auto snakeCoordinate = *snakeCoordinates.getValue();
+        auto snakeCoordinate = snakeCoordinates.getValue();
         if (snakeCoordinate == candidateCoordinate) {
             return true;
         }
@@ -47,7 +47,7 @@ void SnakeMoveRuleNoCollisions::apply(Snake* snake, SnakeMoveEvaluator* moveEval
         return;
     }
 
-    auto head = *snake->getCoordinate(0).get();
+    auto head = snake->getCoordinate(0);
 
     for (int i = 0; i < DIRECTION_COUNT; i++) {
         auto direction = snakeDirections[i];

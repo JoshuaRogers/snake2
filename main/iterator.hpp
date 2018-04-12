@@ -26,7 +26,7 @@ class Iterator
             }
         }
 
-        std::shared_ptr<T> getValue() {
+        T getValue() {
             return _node->getValue();
         }
 

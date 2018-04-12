@@ -8,7 +8,7 @@
 Snake::Snake(Coordinate initialCoordinate, int targetLength) : _isAlive(true)
 {
     for(int i = 0; i < targetLength; i++) {
-        _coordinates.add(std::make_shared<Coordinate>(initialCoordinate));
+        _coordinates.add(initialCoordinate);
     }
 }
 
@@ -31,7 +31,7 @@ void Snake::addMoveRule(std::shared_ptr<SnakeMoveRule> rule)
     _moveRules.add(rule);
 }
 
-std::shared_ptr<Coordinate> Snake::getCoordinate(int index)
+Coordinate Snake::getCoordinate(int index)
 {
     return _coordinates.get(index);
 }
@@ -72,8 +72,8 @@ bool Snake::tryMove()
     }
 
     auto head = _coordinates.get(0);
-    auto newHead = applyDirection(*head.get(), direction);
-    _coordinates.add(std::make_shared<Coordinate>(newHead), 0);
+    auto newHead = applyDirection(head, direction);
+    _coordinates.add(newHead, 0);
     _coordinates.remove(_coordinates.getLength() - 1);
     return true;
 }

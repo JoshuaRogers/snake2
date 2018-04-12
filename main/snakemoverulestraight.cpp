@@ -14,17 +14,17 @@ void SnakeMoveRuleStraight::apply(Snake* snake, SnakeMoveEvaluator* moveEvaluato
     auto head = snake->getCoordinate(0);
     auto neck = snake->getCoordinate(1);
 
-    if (head->x < neck->x) {
+    if (head.x < neck.x) {
         moveEvaluator->applyWeight(SnakeDirection::X_NEG, SUCCESS_WEIGHT);
-    } else if (head->x > neck->x) {
+    } else if (head.x > neck.x) {
         moveEvaluator->applyWeight(SnakeDirection::X_POS, SUCCESS_WEIGHT);
-    } else if (head->y < neck->y) {
+    } else if (head.y < neck.y) {
         moveEvaluator->applyWeight(SnakeDirection::Y_NEG, SUCCESS_WEIGHT);
-    } else if (head->y > neck->y) {
+    } else if (head.y > neck.y) {
         moveEvaluator->applyWeight(SnakeDirection::Y_POS, SUCCESS_WEIGHT);
-    } else if (head->z < neck->z) {
+    } else if (head.z < neck.z) {
         moveEvaluator->applyWeight(SnakeDirection::Z_NEG, SUCCESS_WEIGHT);
-    } else if (head->z > neck->z) {
+    } else if (head.z > neck.z) {
         moveEvaluator->applyWeight(SnakeDirection::Z_POS, SUCCESS_WEIGHT);
     }
 }

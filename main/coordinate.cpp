@@ -1,5 +1,10 @@
 #include "coordinate.hpp"
 
+Coordinate::Coordinate()
+{
+
+}
+
 Coordinate::Coordinate(int x, int y, int z)
 {
     this->x = x;

@@ -8,7 +8,8 @@ template <class T>
 class ListNode
 {
     public:
-        ListNode(std::shared_ptr<T> value) : _value(value) {}
+        ListNode() {}
+        ListNode(T value) : _value(value) {}
 
         bool hasNext() {
             return _next.get() != NULL;
@@ -41,17 +42,17 @@ class ListNode
             }
         }
 
-        std::shared_ptr<T> getValue() {
+        T getValue() {
             return _value;
         }
 
-        void setValue(std::shared_ptr<T> value) {
-            _value.reset(value);
+        void setValue(T value) {
+            _value = value;
         }
 
     private:
         std::shared_ptr<ListNode<T>> _next;
-        std::shared_ptr<T> _value;
+        T _value;
 };
 
 #endif

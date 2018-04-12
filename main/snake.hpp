@@ -13,7 +13,7 @@ class Snake
     public:
         Snake(Coordinate initialCoordinate, int targetLength);
         Iterator<Coordinate> getCoordinateIterator();
-        std::shared_ptr<Coordinate> getCoordinate(int);
+        Coordinate getCoordinate(int);
         int getLength();
 
         void move();
@@ -27,7 +27,7 @@ class Snake
         bool die();
 
         List<Coordinate> _coordinates;
-        List<SnakeMoveRule> _moveRules;
+        List<std::shared_ptr<SnakeMoveRule>> _moveRules;
         bool _isAlive;
 };
 

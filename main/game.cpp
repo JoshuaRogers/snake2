@@ -5,7 +5,7 @@ void Game::update()
 {
     auto ruleIterator = _rules.getIterator();
     while (ruleIterator.moveNext()) {
-        auto rule = ruleIterator.getValue();
+        auto rule = ruleIterator.getValue().get();
         rule->apply(this);
     }
 }
@@ -36,7 +36,7 @@ void Game::removeSnake(std::shared_ptr<Snake> snake)
     }
 }
 
-Iterator<Snake> Game::getSnakeIterator()
+Iterator<std::shared_ptr<Snake>> Game::getSnakeIterator()
 {
     return _snakes.getIterator();
 }
@@ -51,7 +51,7 @@ void Game::addDot(std::shared_ptr<Dot> dot)
     _dots.add(dot);
 }
 
-Iterator<Dot> Game::getDotIterator()
+Iterator<std::shared_ptr<Dot>> Game::getDotIterator()
 {
     return _dots.getIterator();
 }

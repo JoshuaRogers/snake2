@@ -17,18 +17,18 @@ class Game
         int getSnakeCount();
         void addSnake(std::shared_ptr<Snake>);
         void removeSnake(std::shared_ptr<Snake>);
-        Iterator<Snake> getSnakeIterator();
+        Iterator<std::shared_ptr<Snake>> getSnakeIterator();
 
         int getDotCount();
         void addDot(std::shared_ptr<Dot>);
-        Iterator<Dot> getDotIterator();
+        Iterator<std::shared_ptr<Dot>> getDotIterator();
 
         void addRule(std::shared_ptr<GameRule>);
 
     private:
-        List<GameRule> _rules;
-        List<Snake> _snakes;
-        List<Dot> _dots;
+        List<std::shared_ptr<GameRule>> _rules;
+        List<std::shared_ptr<Snake>> _snakes;
+        List<std::shared_ptr<Dot>> _dots;
 };
 
 #endif

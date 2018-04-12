@@ -12,22 +12,22 @@ void SnakeMoveRuleInBounds::apply(Snake* snake, SnakeMoveEvaluator* moveEvaluato
     }
 
     auto head = snake->getCoordinate(0);
-    if (head->x <= _minx) {
+    if (head.x <= _minx) {
         moveEvaluator->forbidDirection(SnakeDirection::X_NEG);
     }
-    if (head->x >= _maxx) {
+    if (head.x >= _maxx) {
         moveEvaluator->forbidDirection(SnakeDirection::X_POS);
     }
-    if (head->y <= _miny) {
+    if (head.y <= _miny) {
         moveEvaluator->forbidDirection(SnakeDirection::Y_NEG);
     }
-    if (head->y >= _maxy) {
+    if (head.y >= _maxy) {
         moveEvaluator->forbidDirection(SnakeDirection::Y_POS);
     }
-    if (head->z <= _minz) {
+    if (head.z <= _minz) {
         moveEvaluator->forbidDirection(SnakeDirection::Z_NEG);
     }
-    if (head->z >= _maxz) {
+    if (head.z >= _maxz) {
         moveEvaluator->forbidDirection(SnakeDirection::Z_POS);
     }
 }

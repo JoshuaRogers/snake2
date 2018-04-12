@@ -4,6 +4,7 @@
 class Coordinate
 {
     public:
+        Coordinate();
         Coordinate(int x, int y, int z);
         int x;
         int y;
