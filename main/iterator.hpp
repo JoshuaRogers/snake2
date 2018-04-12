@@ -13,10 +13,6 @@ class Iterator
             _node = node;
         }
 
-        bool hasNext() {
-            return _node->hasNext();
-        }
-
         bool moveNext() {
             if (hasNext()) {
                 _node = _node->getNext();
@@ -31,6 +27,10 @@ class Iterator
         }
 
     private:
+        bool hasNext() {
+            return _node->hasNext();
+        }
+
         std::shared_ptr<ListNode<T>> _node;
 };
 
