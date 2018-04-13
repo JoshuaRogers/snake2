@@ -3,15 +3,15 @@
 
 #include "gamerenderer.hpp"
 
-class Cube;
+class GraphicsDriver;
 class RainbowGameRenderer : public GameRenderer
 {
     public:
-        RainbowGameRenderer(Cube*);
+        RainbowGameRenderer(GraphicsDriver*);
         void render(std::shared_ptr<Game>) override;
 
     private:
-        Cube* _cube;
+        GraphicsDriver* _graphics;
 };
 
 #endif

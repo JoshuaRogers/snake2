@@ -1,4 +1,5 @@
 #include "beta-cube-library.h"
+#include "graphicsdriver.hpp"
 
 #include "rainbowgamerenderer.hpp"
 #include "game.hpp"
@@ -14,14 +15,12 @@ static const Color rainbow[6] = {
     purple
 };
 
-RainbowGameRenderer::RainbowGameRenderer(Cube* cube)
-{
-    _cube = cube;
-}
+RainbowGameRenderer::RainbowGameRenderer(GraphicsDriver* graphics) : _graphics(graphics) { }
 
 void RainbowGameRenderer::render(std::shared_ptr<Game> game)
 {
-    _cube->background(black);
+    _graphics->flip();
+    _graphics->clear();
 
     int colorIndex = 0;
     auto snakeIterator = game->getSnakeIterator();
@@ -32,11 +31,9 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
         auto color = snake->isAlive() ? rainbow[colorIndex] : white;
         while (coordinateIterator.moveNext()) {
             auto coordinate = coordinateIterator.getValue();
-            _cube->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
+            _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
         }
 
         colorIndex++;
     }
-
-    _cube->show();
 }
