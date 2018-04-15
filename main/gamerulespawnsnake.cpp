@@ -6,6 +6,7 @@
 #include "snakemoverulerandom.hpp"
 #include "snakemoverulestraight.hpp"
 #include "snakemoverulenocollisions.hpp"
+#include "snakemoveruledot.hpp"
 
 GameRuleSpawnSnake::GameRuleSpawnSnake(int targetSnakeCount) : _targetSnakeCount(targetSnakeCount)
 {
@@ -21,6 +22,7 @@ void GameRuleSpawnSnake::apply(Game* game)
         snake->addMoveRule(std::make_shared<SnakeMoveRuleNoCollisions>(SnakeMoveRuleNoCollisions(game)));
         snake->addMoveRule(std::make_shared<SnakeMoveRuleRandom>(SnakeMoveRuleRandom(6)));
         snake->addMoveRule(std::make_shared<SnakeMoveRuleStraight>(SnakeMoveRuleStraight()));
+        snake->addMoveRule(std::make_shared<SnakeMoveRuleDot>(SnakeMoveRuleDot(game)));
         game->addSnake(snake);
-    }    
+    }
 }
