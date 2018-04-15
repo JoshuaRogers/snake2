@@ -21,6 +21,7 @@ class Game
 
         int getDotCount();
         void addDot(std::shared_ptr<Dot>);
+        void removeDot(std::shared_ptr<Dot>);
         Iterator<std::shared_ptr<Dot>> getDotIterator();
 
         void addRule(std::shared_ptr<GameRule>);

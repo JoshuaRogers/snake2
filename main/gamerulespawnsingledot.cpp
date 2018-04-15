@@ -48,9 +48,21 @@ void spawnDot(Game* game)
     }
 }
 
+bool hasLivingSnake(Game* game)
+{
+    auto snakes = game->getSnakeIterator();
+    while (snakes.moveNext()) {
+        if (snakes.getValue()->isAlive()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void GameRuleSpawnSingleDot::apply(Game* game)
 {
-    if (game->getDotCount() > 0) {
+    if (game->getDotCount() > 0 || !hasLivingSnake(game)) {
         _ticksWithoutDot = 0;
         return;
     }

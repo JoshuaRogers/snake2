@@ -10,6 +10,7 @@
 #include "gamerulespawnsingledot.hpp"
 #include "gamerulemovesnake.hpp"
 #include "gameruleprunedeadsnake.hpp"
+#include "gameruleextendsnake.hpp"
 
 #include "graphicsdriver.hpp"
 #include "rainbowgamerenderer.hpp"
@@ -29,6 +30,7 @@ void setup() {
   game->addRule(std::make_shared<GameRuleSpawnSingleDot>(GameRuleSpawnSingleDot(32, 64)));
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
   game->addRule(std::make_shared<GameRulePruneDeadSnake>(GameRulePruneDeadSnake()));
+  game->addRule(std::make_shared<GameRuleExtendSnake>(GameRuleExtendSnake()));
 }
 
 void loop() {

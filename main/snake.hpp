@@ -17,6 +17,7 @@ class Snake
         int getLength();
 
         void move();
+        void extend();
         void addMoveRule(std::shared_ptr<SnakeMoveRule>);
         bool isAlive();
 

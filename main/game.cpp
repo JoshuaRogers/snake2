@@ -51,6 +51,22 @@ void Game::addDot(std::shared_ptr<Dot> dot)
     _dots.add(dot);
 }
 
+void Game::removeDot(std::shared_ptr<Dot> dot)
+{
+    int index = -1;
+    auto dots = _dots.getIterator();
+    while(dots.moveNext()) {
+        index++;
+        if (dot == dots.getValue()) {
+            break;
+        }
+    }
+
+    if (index != -1) {
+        _dots.remove(index);
+    }
+}
+
 Iterator<std::shared_ptr<Dot>> Game::getDotIterator()
 {
     return _dots.getIterator();

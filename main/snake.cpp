@@ -26,6 +26,14 @@ void Snake::move()
     }
 }
 
+void Snake::extend()
+{
+    auto head = getLength() >= 0
+        ? getCoordinate(0)
+        : Coordinate(0, 0, 0);
+    _coordinates.add(head, 0);
+}
+
 void Snake::addMoveRule(std::shared_ptr<SnakeMoveRule> rule)
 {
     _moveRules.add(rule);
