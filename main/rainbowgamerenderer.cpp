@@ -4,6 +4,7 @@
 #include "rainbowgamerenderer.hpp"
 #include "game.hpp"
 #include "snake.hpp"
+#include "dot.hpp"
 #include "globals.hpp"
 
 static const Color rainbow[6] = {
@@ -35,5 +36,11 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
         }
 
         colorIndex++;
+    }
+
+    auto dotIterator = game->getDotIterator();
+    while (dotIterator.moveNext()) {
+        auto coordinate = dotIterator.getValue()->getCoordinate();
+        _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, white);
     }
 }
