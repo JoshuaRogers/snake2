@@ -29,7 +29,7 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
         auto snake = snakeIterator.getValue();
         auto coordinateIterator = snake->getCoordinateIterator();
 
-        auto color = snake->isAlive() ? rainbow[colorIndex] : white;
+        auto color = snake->isAlive() ? rainbow[colorIndex] : grey;
         while (coordinateIterator.moveNext()) {
             auto coordinate = coordinateIterator.getValue();
             _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);

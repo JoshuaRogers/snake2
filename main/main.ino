@@ -26,7 +26,7 @@ void setup() {
   Serial.begin(9600);
   while(!Serial);
 
-  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(1)));
+  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(6)));
   game->addRule(std::make_shared<GameRuleSpawnSingleDot>(GameRuleSpawnSingleDot(32, 64)));
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
   game->addRule(std::make_shared<GameRulePruneDeadSnake>(GameRulePruneDeadSnake()));
