@@ -18,24 +18,25 @@ static const Color rainbow[6] = {
 
 RainbowGameRenderer::RainbowGameRenderer(GraphicsDriver* graphics) : _graphics(graphics) { }
 
+void renderSnake(std::shared_ptr<Snake> snake, GraphicsDriver* graphics)
+{
+    auto coordinateIterator = snake->getCoordinateIterator();
+    auto color = snake->isAlive() ? rainbow[snake->getId() % 6] : grey;
+    while (coordinateIterator.moveNext()) {
+        auto coordinate = coordinateIterator.getValue();
+        graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
+    }
+}
+
 void RainbowGameRenderer::render(std::shared_ptr<Game> game)
 {
     _graphics->flip();
     _graphics->clear();
 
-    int colorIndex = 0;
     auto snakeIterator = game->getSnakeIterator();
     while (snakeIterator.moveNext()) {
         auto snake = snakeIterator.getValue();
-        auto coordinateIterator = snake->getCoordinateIterator();
-
-        auto color = snake->isAlive() ? rainbow[colorIndex] : grey;
-        while (coordinateIterator.moveNext()) {
-            auto coordinate = coordinateIterator.getValue();
-            _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
-        }
-
-        colorIndex++;
+        renderSnake(snake, _graphics);
     }
 
     auto dotIterator = game->getDotIterator();

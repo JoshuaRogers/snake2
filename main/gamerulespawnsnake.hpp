@@ -3,13 +3,15 @@
 
 #include "gamerule.hpp"
 
+class SnakeFactory;
 class GameRuleSpawnSnake : public GameRule
 {
     public:
-        GameRuleSpawnSnake(int targetSnakeCount);
+        GameRuleSpawnSnake(std::shared_ptr<SnakeFactory>, int targetSnakeCount);
         void apply(Game*) override;
 
     private:
+        std::shared_ptr<SnakeFactory> _snakeFactory;
         int _targetSnakeCount;
 };
 

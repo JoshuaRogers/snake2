@@ -7,11 +7,11 @@ class Game;
 class SnakeMoveRuleNoCollisions : public SnakeMoveRule
 {
     public:
-        SnakeMoveRuleNoCollisions(Game*);
+        SnakeMoveRuleNoCollisions(std::weak_ptr<Game>);
         void apply(Snake*, SnakeMoveEvaluator*) override;
 
     private:
-        Game* _game;
+        std::weak_ptr<Game> _game;
 };
 
 #endif

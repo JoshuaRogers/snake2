@@ -5,7 +5,8 @@
 #include "snakemoveevaluator.hpp"
 #include "snakemoverule.hpp"
 
-Snake::Snake(Coordinate initialCoordinate, int targetLength) : _isAlive(true)
+Snake::Snake(int snakeId, Coordinate initialCoordinate, int targetLength) : _snakeId(snakeId),
+                                                                            _isAlive(true)
 {
     for(int i = 0; i < targetLength; i++) {
         _coordinates.add(initialCoordinate);
@@ -47,6 +48,11 @@ Coordinate Snake::getCoordinate(int index)
 int Snake::getLength()
 {
     return _coordinates.getLength();
+}
+
+int Snake::getId()
+{
+    return _snakeId;
 }
 
 bool Snake::isAlive()

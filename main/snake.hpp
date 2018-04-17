@@ -11,10 +11,11 @@ class SnakeMoveRule;
 class Snake
 {
     public:
-        Snake(Coordinate initialCoordinate, int targetLength);
+        Snake(int snakeId, Coordinate initialCoordinate, int targetLength);
         Iterator<Coordinate> getCoordinateIterator();
         Coordinate getCoordinate(int);
         int getLength();
+        int getId();
 
         void move();
         void extend();
@@ -30,6 +31,7 @@ class Snake
         List<Coordinate> _coordinates;
         List<std::shared_ptr<SnakeMoveRule>> _moveRules;
         bool _isAlive;
+        int _snakeId;
 };
 
 #endif

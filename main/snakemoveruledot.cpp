@@ -18,10 +18,7 @@ static const SnakeDirection snakeDirections[DIRECTION_COUNT] = {
     SnakeDirection::Z_NEG
 };
 
-SnakeMoveRuleDot::SnakeMoveRuleDot(Game* game)
-{
-    _game = game;
-}
+SnakeMoveRuleDot::SnakeMoveRuleDot(std::weak_ptr<Game> game) : _game(game) { }
 
 void approachDot(std::shared_ptr<Dot> dot, Snake* snake, SnakeMoveEvaluator* moveEvaluator) {
         auto target = dot->getCoordinate();
@@ -59,7 +56,7 @@ void avoidDot(std::shared_ptr<Dot> dot, Snake* snake, SnakeMoveEvaluator* moveEv
 
 void SnakeMoveRuleDot::apply(Snake* snake, SnakeMoveEvaluator* moveEvaluator)
 {
-    auto dots = _game->getDotIterator();
+    auto dots = _game.lock().get()->getDotIterator();
     while (dots.moveNext()) {
         auto dot = dots.getValue();
 

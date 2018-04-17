@@ -19,6 +19,13 @@
 #include "coordinate.hpp"
 #include "list.hpp"
 
+#include "snakefactory.hpp"
+#include "snakemoveruleinbounds.hpp"
+#include "snakemoverulerandom.hpp"
+#include "snakemoverulestraight.hpp"
+#include "snakemoverulenocollisions.hpp"
+#include "snakemoveruledot.hpp"
+
 #define REDRAWS_PER_TICK 15
 
 auto game = std::make_shared<Game>(Game());
@@ -29,7 +36,14 @@ void setup() {
   Serial.begin(9600);
   while(!Serial);
 
-  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(6)));
+  auto snakeFactory = std::make_shared<SnakeFactory>(SnakeFactory());
+  snakeFactory->addMoveRule(std::make_shared<SnakeMoveRuleInBounds>(SnakeMoveRuleInBounds(0, 0, 0, X_SIZE - 1, Y_SIZE - 1, Z_SIZE - 1)));
+  snakeFactory->addMoveRule(std::make_shared<SnakeMoveRuleNoCollisions>(SnakeMoveRuleNoCollisions(std::weak_ptr<Game>(game))));
+  snakeFactory->addMoveRule(std::make_shared<SnakeMoveRuleRandom>(SnakeMoveRuleRandom(6)));
+  snakeFactory->addMoveRule(std::make_shared<SnakeMoveRuleStraight>(SnakeMoveRuleStraight()));
+  snakeFactory->addMoveRule(std::make_shared<SnakeMoveRuleDot>(SnakeMoveRuleDot(std::weak_ptr<Game>(game))));
+
+  game->addRule(std::make_shared<GameRuleSpawnSnake>(GameRuleSpawnSnake(snakeFactory, 6)));
   game->addRule(std::make_shared<GameRuleSpawnSingleDot>(GameRuleSpawnSingleDot(32, 64)));
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
   game->addRule(std::make_shared<GameRulePruneDeadSnake>(GameRulePruneDeadSnake()));

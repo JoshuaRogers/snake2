@@ -14,7 +14,7 @@ static const SnakeDirection snakeDirections[DIRECTION_COUNT] = {
     SnakeDirection::Z_NEG
 };
 
-SnakeMoveRuleNoCollisions::SnakeMoveRuleNoCollisions(Game* game) : _game(game) {}
+SnakeMoveRuleNoCollisions::SnakeMoveRuleNoCollisions(std::weak_ptr<Game> game) : _game(game) {}
 
 bool hasCollision(std::shared_ptr<Snake> snake, Coordinate candidateCoordinate) {
     auto snakeCoordinates = snake->getCoordinateIterator();
@@ -53,7 +53,7 @@ void SnakeMoveRuleNoCollisions::apply(Snake* snake, SnakeMoveEvaluator* moveEval
         auto direction = snakeDirections[i];
         auto directionCoordinate = applyDirection(head, direction);
 
-        if (hasCollision(_game, directionCoordinate)) {
+        if (hasCollision(_game.lock().get(), directionCoordinate)) {
             moveEvaluator->forbidDirection(direction);
         }
     }

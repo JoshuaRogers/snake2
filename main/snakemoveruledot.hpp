@@ -7,11 +7,11 @@ class Game;
 class SnakeMoveRuleDot : public SnakeMoveRule
 {
     public:
-        SnakeMoveRuleDot(Game*);
+        SnakeMoveRuleDot(std::weak_ptr<Game>);
         void apply(Snake*, SnakeMoveEvaluator*) override;
 
     private:
-        Game* _game;
+        std::weak_ptr<Game> _game;
 };
 
 #endif
