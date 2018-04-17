@@ -19,6 +19,8 @@
 #include "coordinate.hpp"
 #include "list.hpp"
 
+#define REDRAWS_PER_TICK 15
+
 auto game = std::make_shared<Game>(Game());
 auto graphics = GraphicsDriver(Cube());
 auto renderer = std::make_shared<RainbowGameRenderer>(RainbowGameRenderer(&graphics));
@@ -38,7 +40,7 @@ void setup() {
 void loop() {
   game->update();
   renderer->render(game);
-  for (int i = 0; i < 10; i++) {
-    graphics.update(i / 10.0);
+  for (int i = 0; i < REDRAWS_PER_TICK; i++) {
+    graphics.update(i / double(REDRAWS_PER_TICK));
   }
 }
