@@ -11,6 +11,7 @@
 #include "gamerulemovesnake.hpp"
 #include "gameruleprunedeadsnake.hpp"
 #include "gameruleextendsnake.hpp"
+#include "gameruleripendot.hpp"
 
 #include "graphicsdriver.hpp"
 #include "rainbowgamerenderer.hpp"
@@ -31,6 +32,7 @@ void setup() {
   game->addRule(std::make_shared<GameRuleMoveSnake>(GameRuleMoveSnake()));
   game->addRule(std::make_shared<GameRulePruneDeadSnake>(GameRulePruneDeadSnake()));
   game->addRule(std::make_shared<GameRuleExtendSnake>(GameRuleExtendSnake()));
+  game->addRule(std::make_shared<GameRuleRipenDot>(GameRuleRipenDot()));
 }
 
 void loop() {
@@ -38,6 +40,5 @@ void loop() {
   renderer->render(game);
   for (int i = 0; i < 10; i++) {
     graphics.update(i / 10.0);
-    //delay(50 / 20.0);
   }
 }

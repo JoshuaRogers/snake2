@@ -9,6 +9,7 @@
 // come up with a more precise way of doing this, this method works well enough for any practical
 // case and is one of the easiest on memory.
 #define MAX_PLACEMENT_ATTEMPTS 256
+#define TICKS_UNTIL_RIPE 64
 
 GameRuleSpawnSingleDot::GameRuleSpawnSingleDot(int minWaitTicks, int maxWaitTicks) : _minWaitTicks(minWaitTicks),
                                                                                      _maxWaitTicks(maxWaitTicks),
@@ -42,7 +43,7 @@ void spawnDot(Game* game)
                                      random(Y_SIZE),
                                      random(Z_SIZE));
         if (!collisionMap.hasCollision(coordinate)) {
-            game->addDot(std::make_shared<Dot>(coordinate));
+            game->addDot(std::make_shared<Dot>(Dot(coordinate, TICKS_UNTIL_RIPE)));
             return;
         }
     }

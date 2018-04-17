@@ -6,11 +6,15 @@
 class Dot
 {
     public:
-        Dot(Coordinate);
+        Dot(Coordinate, unsigned char);
+        void ripen();
         Coordinate getCoordinate();
+        unsigned char getTicksUntilRipe();
+        bool isRipe();
 
     private:
         Coordinate _coordinate;
+        unsigned char _ticksUntilRipe;
 };
 
 #endif
