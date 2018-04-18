@@ -6,6 +6,8 @@
 class GraphicsDriver
 {
     public:
+        static Color fromHSV(int, double, double);
+
         GraphicsDriver(Cube);
         void update(double ratio);
         void flip();

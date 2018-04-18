@@ -4,6 +4,7 @@
 #include "gamerenderer.hpp"
 
 class GraphicsDriver;
+class Snake;
 class RainbowGameRenderer : public GameRenderer
 {
     public:
@@ -11,7 +12,9 @@ class RainbowGameRenderer : public GameRenderer
         void render(std::shared_ptr<Game>) override;
 
     private:
+        void renderSnake(std::shared_ptr<Snake> snake);
         GraphicsDriver* _graphics;
+        int _tick;
 };
 
 #endif

@@ -7,25 +7,21 @@
 #include "dot.hpp"
 #include "globals.hpp"
 
-static const Color rainbow[6] = {
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    purple
-};
+RainbowGameRenderer::RainbowGameRenderer(GraphicsDriver* graphics) : _graphics(graphics),
+                                                                     _tick(0) { }
 
-RainbowGameRenderer::RainbowGameRenderer(GraphicsDriver* graphics) : _graphics(graphics) { }
-
-void renderSnake(std::shared_ptr<Snake> snake, GraphicsDriver* graphics)
+void RainbowGameRenderer::renderSnake(std::shared_ptr<Snake> snake)
 {
     auto coordinateIterator = snake->getCoordinateIterator();
-    auto color = snake->isAlive() ? rainbow[snake->getId() % 6] : grey;
+    int coordinateIndex = 0;
     while (coordinateIterator.moveNext()) {
+        auto color = snake->isAlive() ? GraphicsDriver::fromHSV(_tick - coordinateIndex, 1, 0.5) : grey;
         auto coordinate = coordinateIterator.getValue();
-        graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
+        _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
+        coordinateIndex++;
     }
+
+    _tick++;
 }
 
 void RainbowGameRenderer::render(std::shared_ptr<Game> game)
@@ -36,7 +32,7 @@ void RainbowGameRenderer::render(std::shared_ptr<Game> game)
     auto snakeIterator = game->getSnakeIterator();
     while (snakeIterator.moveNext()) {
         auto snake = snakeIterator.getValue();
-        renderSnake(snake, _graphics);
+        renderSnake(snake);
     }
 
     auto dotIterator = game->getDotIterator();
