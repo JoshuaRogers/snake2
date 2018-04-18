@@ -20,16 +20,16 @@ std::shared_ptr<GameMode> buildRandomGameMode()
 void setup() {
   Serial.begin(9600);
   while(!Serial);
-
   gameMode = buildRandomGameMode();
 }
 
 void loop() {
-  while (gameMode->isRunning()) {
-    gameMode->tick();
-    
-    for (int i = 0; i < REDRAWS_PER_TICK; i++) {
-      graphics.update(i / double(REDRAWS_PER_TICK));
-    }
+  if (!gameMode->isRunning()) {
+      gameMode = buildRandomGameMode();
+  }
+
+  gameMode->tick();
+  for (int i = 0; i < REDRAWS_PER_TICK; i++) {
+    graphics.update(i / double(REDRAWS_PER_TICK));
   }
 }
