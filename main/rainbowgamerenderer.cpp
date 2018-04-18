@@ -7,16 +7,21 @@
 #include "dot.hpp"
 #include "globals.hpp"
 
+#define SATURATION 1
+#define VALUE      0.5
+
 RainbowGameRenderer::RainbowGameRenderer(GraphicsDriver* graphics) : _graphics(graphics),
                                                                      _tick(0) { }
 
 void RainbowGameRenderer::renderSnake(std::shared_ptr<Snake> snake)
 {
     auto coordinateIterator = snake->getCoordinateIterator();
-    int coordinateIndex = 0;
+    auto coordinateIndex = 0;
     while (coordinateIterator.moveNext()) {
-        auto color = snake->isAlive() ? GraphicsDriver::fromHSV(_tick - coordinateIndex, 1, 0.5) : grey;
+        auto hue = (_tick - coordinateIndex) * 2;
+        auto color = snake->isAlive() ? GraphicsDriver::fromHSV(hue, SATURATION, VALUE) : grey;
         auto coordinate = coordinateIterator.getValue();
+
         _graphics->setVoxel(coordinate.x, coordinate.y, coordinate.z, color);
         coordinateIndex++;
     }

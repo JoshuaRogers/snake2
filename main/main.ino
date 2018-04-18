@@ -7,7 +7,7 @@
 #include "gamemode.hpp"
 #include "gamemodefactory.hpp"
 
-#define REDRAWS_PER_TICK 15
+#define REDRAWS_PER_TICK 20
 
 auto graphics = GraphicsDriver(Cube());
 std::shared_ptr<GameMode> gameMode;
